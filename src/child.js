@@ -2,9 +2,9 @@
 const chalk = require('chalk')
 const childProcess = require('child_process')
 
-console.log(chalk.bgGreen.red('正在启动'+process.argv[3]+'...')+' '+chalk.blue('pid:'+process.pid))
+console.log(chalk.bgGreen.red('正在启动' + process.argv[3] + '...') + ' ' + chalk.blue('pid:' + process.pid))
 console.log(chalk.blue(process.argv[2]))
-const childProcessorExec =  childProcess.spawn('npm',['run','dev'],{cwd:process.argv[2],stdio:'inherit'},(error,stdout,stderr)=>{
+const childProcessorExec = childProcess.spawn('npm', ['run', 'dev'], {cwd: process.argv[2], stdio: 'inherit'}, (error, stdout, stderr) => {
   if (error) {
     console.error(`exec error: ${error}`)
     return
@@ -13,7 +13,7 @@ const childProcessorExec =  childProcess.spawn('npm',['run','dev'],{cwd:process.
   console.log(`stderr: ${stderr}`)
 })
 
-childProcessorExec.on('data',(data)=>{
+childProcessorExec.on('data', (data) => {
   console.log(`stdout: ${data}`)
 })
 

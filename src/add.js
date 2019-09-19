@@ -7,26 +7,26 @@ const promptList = [
     type: 'input',
     message: '请输入项目名称',
     name: 'projectName',
-    filters:input => input.trim(),
-    validate(input){
+    filters: (input) => input.trim(),
+    validate (input) {
       const done = this.async()
-      if(!input){
+      if (!input) {
         return false
       }
-      done(null,true) 
+      done(null, true)
     }
   },
   {
     type: 'input',
     message: '项目根目录路径',
     name: 'path',
-    filters:input => input.trim(),
-    validate(input){
+    filters: (input) => input.trim(),
+    validate (input) {
       const done = this.async()
-      if(!input){
+      if (!input) {
         return false
       }
-      done(null,true) 
+      done(null, true)
     }
   },
   {
@@ -34,52 +34,52 @@ const promptList = [
     message: '是否依赖nodeApi服务?',
     name: 'dependency',
     choices: [
-      {name:'是',value:true},
-      {name:'否',value:false}
+      {name: '是', value: true},
+      {name: '否', value: false}
     ]
   },
   {
     type: 'input',
     message: 'nodeApi项目根目录路径',
     name: 'apiPath',
-    when:(answers)=> answers.dependency,
-    filters:input => input.trim(),
-    validate(input){
+    when: (answers) => answers.dependency,
+    filters: (input) => input.trim(),
+    validate (input) {
       const done = this.async()
-      if(!input){
+      if (!input) {
         return false
       }
-      done(null,true) 
+      done(null, true)
     }
-  },
+  }
 ]
 
-const getAllProjects = ()=>{
-  if(!projectConfig.projects) return []
-  return projectConfig.projects.map(item=>item.name)
+const getAllProjects = () => {
+  if (!projectConfig.projects) {return []}
+  return projectConfig.projects.map((item) => item.name)
 }
-const checkRepeate = (projectName)=>{
-  if(getAllProjects().includes(projectName)){
+const checkRepeate = (projectName) => {
+  if (getAllProjects().includes(projectName)) {
     return false
   }
   return true
 }
-const prompts = ()=> new Promise((resolve,reject) =>{
+const prompts = () => new Promise((resolve, reject) => {
   inquirer.prompt(promptList)
-    .then(answers=>{
-      if(checkRepeate(answers.projectName)){
+    .then((answers) => {
+      if (checkRepeate(answers.projectName)) {
         resolve(answers)
-      }else{
+      } else {
         reject('该项目名称已存在!')
       }
     })
 })
 
 prompts()
-  .then(answers=>{
+  .then((answers) => {
     process.send(answers)
   })
-  .catch(error=>{
+  .catch((error) => {
     console.log(chalk.red(error))
     prompts()
   })

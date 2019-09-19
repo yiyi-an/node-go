@@ -14,12 +14,12 @@ const promptList = [
     message: '是否同时启动nodeApi服务?',
     name: 'isDouble',
     choices: [
-      {name:'是,同时启动两个服务',value:true},
-      {name:'否,只启动一个',value:false}
+      {name: '是,同时启动两个服务', value: true},
+      {name: '否,只启动一个', value: false}
     ]
   }
 ]
 
-inquirer.prompt(promptList).then(answers=>{
+inquirer.prompt(promptList).then((answers) => {
   process.send(answers)
 })
