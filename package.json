@@ -1,0 +1,26 @@
+{
+  "name": "go",
+  "version": "1.1.0",
+  "description": "node服务快速启动工具,运行vue-cli项目，并同时运行依赖的nodeapi项目.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "./bin/npmrc.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xiaodong.an@zhaopin.com.cn",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^3.0.1",
+    "eslint-plugin-html": "^6.0.0",
+    "inquirer": "^7.0.0",
+    "md5": "^2.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  },
+  "bin": {
+    "go": "./bin/npmrc.js"
+  }
+}
