@@ -418,7 +418,7 @@ module.exports = {
       // 要求对象字面量属性名称用引号括起来
       "quote-props": 0,
       // 强制使用一致的反勾号、双引号或单引号
-      "quotes": [2, "single", "avoid-escape"],
+      "quotes": [0, "single", "avoid-escape"],
       // 要求使用 JSDoc 注释
       "require-jsdoc":1,
       // 要求或禁止使用分号而不是 ASI（这个才是控制行尾部分号的，）
