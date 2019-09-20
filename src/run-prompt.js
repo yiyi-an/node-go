@@ -9,6 +9,15 @@ const promptList = [
     name: 'identify',
     choices: config.projects
   },
+  // {
+  //   type: 'list',
+  //   message: '启动VsCode?',
+  //   name: 'startCode',
+  //   choices: [
+  //     {name: '是的', value: true},
+  //     {name: '不', value: false}
+  //   ]
+  // },
   {
     type: 'list',
     message: '是否同时启动nodeApi服务?',

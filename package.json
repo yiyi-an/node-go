@@ -10,6 +10,7 @@
   "author": "xiaodong.an@zhaopin.com.cn",
   "license": "ISC",
   "dependencies": {
+    "command-exists": "^1.2.8",
     "commander": "^3.0.1",
     "eslint-plugin-html": "^6.0.0",
     "inquirer": "^7.0.0",
