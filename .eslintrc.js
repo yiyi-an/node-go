@@ -172,7 +172,7 @@ module.exports = {
       // 禁止在循环中出现 function 声明和表达式
       "no-loop-func":1,
       // 禁用魔术数字(3.14什么的用常量代替)
-      "no-magic-numbers":[1,{ "ignore": [0,1,2,3,4,5,6,7,8,9] }],
+      "no-magic-numbers":[1,{ "ignore": [-1,0,1,2,3,4,5,6,7,8,9] }],
       // 禁止使用多个空格
       "no-multi-spaces": 2,
       // 禁止使用多行字符串，在 JavaScript 中，可以在新行之前使用斜线创建多行字符串
