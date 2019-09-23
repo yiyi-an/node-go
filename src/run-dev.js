@@ -4,9 +4,4 @@ const childProcess = require('child_process')
 
 console.log(chalk.bgGreen.red('正在启动' + process.argv[3] + '...') + ' ' + chalk.blue('pid:' + process.pid))
 console.log(chalk.blue(process.argv[2]))
-const childProcessorExec = childProcess.spawnSync('npm', ['run', 'dev'], {cwd: process.argv[2], stdio: 'inherit'})
-
-
-childProcessorExec.on('exit', (code) => {
-  console.log(`子进程 ${code} 退出`)
-})
+childProcess.spawnSync('npm', ['run', 'dev'], {cwd: process.argv[2], stdio: 'inherit'})

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-require('../utils/check')
+require('../lib/check')
 
 require('../lib/index')
