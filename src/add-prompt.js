@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const inquirer = require('inquirer')
 const projectConfig = require('../lib/check')
-const chalk = require('chalk')
+const chalk = require('../utils/chalk')
 const promptList = [
   {
     type: 'input',

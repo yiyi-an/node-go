@@ -19,6 +19,7 @@ const promptList = [
   //   ]
   // },
   {
+    when: (answers) => config.path[answers.identify + 'Api'],
     type: 'list',
     message: '是否同时启动nodeApi服务?',
     name: 'isDouble',

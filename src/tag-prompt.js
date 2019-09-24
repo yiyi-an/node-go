@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 const inquirer = require('inquirer')
-const config = require('../project.config.js')
 
 const promptList = [
   {
@@ -27,8 +26,13 @@ const promptList = [
   },
   {
     type: 'input',
-    message: '输入版本号,格式 x.y.z ,不输入将自动匹配:',
+    message: '输入版本号,格式:x.y.z (不输入则自动匹配):',
     name: 'v'
+  },
+  {
+    type: 'input',
+    message: 'Tag描述:',
+    name: 'description'
   }
 ]
 
