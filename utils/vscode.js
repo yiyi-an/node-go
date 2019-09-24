@@ -20,8 +20,8 @@ class VsCode {
 
   }
   static start () {
-    childProcess.spawnSync('code', [path[`${this.identify}Desktop`]])
-    if (path[`${this.identify}Api`]) {childProcess.spawnSync('code', [path[`${this.identify}Api`]])}
+    childProcess.execFileSync('code', [path[`${this.identify}Desktop`]])
+    if (path[`${this.identify}Api`]) {childProcess.execFileSync('code', [path[`${this.identify}Api`]])}
   }
 }
 module.exports = VsCode
