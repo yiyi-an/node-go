@@ -75,8 +75,20 @@ const prompts = () => new Promise((resolve, reject) => {
     })
 })
 
+const pathRepair = (path) => {
+  const _path = path.trim()
+  if (!_path) {return new Error('项目路径不正确')}
+  if (_path.slice(-1) !== '/') {
+    return _path + '/'
+  } else {
+    return _path
+  }
+}
+
 prompts()
   .then((answers) => {
+    answers.path = pathRepair(answers.path)
+    if (answers.apiPath) {answers.apiPath = pathRepair(answers.apiPath)}
     process.send(answers)
   })
   .catch((error) => {
