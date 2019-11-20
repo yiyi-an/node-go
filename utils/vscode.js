@@ -1,7 +1,7 @@
 const childProcess = require('child_process')
 const chalk = require('../utils/chalk')
 
-const { projects, path } = require('../project.config.js')
+const { projects, path } = require(__dirname + '/../../.go.project.config.js')
 const commandExists = require('command-exists')
 
 class VsCode {

@@ -22,6 +22,7 @@
     "eslint-plugin-import": "^2.18.2"
   },
   "bin": {
-    "goo": "./bin/npmrc.js"
+    "goo": "./bin/npmrc.js",
+    "gg": "./bin/npmrc.js"
   }
 }

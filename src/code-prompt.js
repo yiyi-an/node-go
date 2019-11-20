@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const inquirer = require('inquirer')
-const config = require('../project.config.js')
+const config = require(__dirname + '/../../.go.project.config.js')
 
 const promptList = [
   {

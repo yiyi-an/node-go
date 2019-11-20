@@ -3,3 +3,4 @@
 require('../lib/check')
 
 require('../lib/index')
+
