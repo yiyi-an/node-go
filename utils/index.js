@@ -74,27 +74,47 @@ module.exports = {
   },
 
   versionSortRule (str1, str2) {
-
-    let arr1 = str1.split('.');
-    let arr2 = str2.split('.');
-    let minLen = Math.min(arr1.length, arr2.length);
-    let maxLen = Math.max(arr1.length, arr2.length);
+    let arr1 = str1.split('.')
+    let arr2 = str2.split('.')
+    let minLen = Math.min(arr1.length, arr2.length)
+    let maxLen = Math.max(arr1.length, arr2.length)
 
     for (let i = 0; i < minLen; i++) {
       if (parseInt(arr1[i]) > parseInt(arr2[i])) {
-        return 1;
+        return 1
       } else if (parseInt(arr1[i]) < parseInt(arr2[i])) {
-        return -1;
+        return -1
       }
       if (i + 1 === minLen) {
         if (arr1.length > arr2.length) {
-          return 1;
+          return 1
         } else {
-          return -1;
+          return -1
         }
       }
     }
   },
-
-  
+  rennderLine ({cid, name}) {
+    const arr = cid.split('-').map((item) => parseInt(item))
+    const maxInd = arr.length - 1
+    let str = ''
+    arr.forEach((c, i, arr) => {
+      if (i === maxInd) {
+        str = c
+          ? (str + '├')
+          : (str + '└')
+      } else {
+        if (i === 0) {
+          str = c
+            ? str + '|   '
+            : str + '    '
+        } else {
+          str = c && arr[i - 1]
+            ? str + '|   '
+            : str + '    '
+        }
+      }
+    })
+    return str + '---' + name
+  }
 }
