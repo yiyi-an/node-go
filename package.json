@@ -1,13 +1,13 @@
 {
   "name": "no-fast-go",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "node服务快速启动工具,适用于vue-cli项目.",
   "main": "index.js",
   "scripts": {
     "dev": "./bin/npmrc.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "ma": "git checkout master && git pull origin develop",
-    "publish":"npm publish && npm checkout develop"
+    "publish": "npm publish && npm checkout develop"
   },
   "author": "xiaodong.an@zhaopin.com.cn",
   "license": "ISC",
