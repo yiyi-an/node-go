@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "./bin/npmrc.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "ma": "git checkout master && git pull origin develop",
-    "publish": "npm publish && npm checkout develop"
+    "ma": "git checkout master && git pull origin develop"
   },
   "author": "xiaodong.an@zhaopin.com.cn",
   "license": "ISC",
