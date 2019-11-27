@@ -1,7 +1,6 @@
 
 const childProcess = require('child_process')
 const chalk = require('../utils/chalk')
-const u = require('../utils')
 const fs = require("fs")
 const path = require("path")
 
@@ -11,7 +10,6 @@ const root = path.join(process.env.PWD)
 const dirWhiteList = ['node_modules', '.git', '.vscode','.DS_Store'] // 文件夹白名单 不会遍历其子目录
 const fileWhiteList = ['.DS_Store'] // 文件白名单 不会输出
 
-const fileTree = [] // 文件结构树
 const maxDepth = 0 // 遍历深度 0表示只遍历当前目录
 
 class Tree {
@@ -19,14 +17,16 @@ class Tree {
     this.root = root
     this.treeData = '|\n'
     this.renderData = '|\n'
+    this.fileTree = [] // 文件结构树
     this.run()
   }
   async run () {
     await this.getArg()
-    this.readDirSync(this.root, fileTree, '', 0)
-    this.render(fileTree)
+    this.readDirSync(this.root, this.fileTree, '', 0)
+    this.render(this.fileTree)
 
     // 输出
+    console.log('\n',this.root)
     console.log(this.renderData)
     if(this.isReadme){
       this.writeFile()
@@ -46,6 +46,12 @@ class Tree {
     })
   }
   // 读取文件目录, 生成filltree
+  // {
+  //   ele:'', // 文件名称
+  //   cid:'', // 文件位置标识 eg. 1-8-3-0-2 , 0代表当前目录最后一个文件
+  //   children:'',   //只有dir有
+  // }
+  // eg:  1-12-3-0-1  0代表当前目录下最后一个文件
   readDirSync (currentPath, parentList, pid, depth) {
     let pa = fs.readdirSync(currentPath)
     const maxInd = pa.length - 1
@@ -59,40 +65,36 @@ class Tree {
       }
       if (info.isDirectory() && !dirWhiteList.includes(ele) && depth + 1 <= this.maxDepth) {
         obj.children = []
+        obj.isDirectory = true
         const root = path.join(currentPath, '/', ele)
         this.readDirSync(root, obj.children, cid, depth + 1)
       }
     })
   }
   // 单行渲染逻辑
-  rennderLine ({cid, name}) {
+  rennderLine ({cid, ele}) {
     const arr = cid.split('-').map((item) => parseInt(item))
-    const maxInd = arr.length - 1
+    const depth = arr.length - 1
     let str = ''
     arr.forEach((c, i, arr) => {
-      if (i === maxInd) {
+      if (i === depth) {
         str = c
           ? (str + '├')
           : (str + '└')
       } else {
-        if (i === 0) {
-          str = c
+        str = c
             ? str + '|   '
             : str + '    '
-        } else {
-          str = c && arr[i - 1]
-            ? str + '|   '
-            : str + '    '
-        }
       }
     })
 
-    return [str + '---' + chalk.list(arr.length - 1, name) + "\n" , str + '---' + name + "\n"]
+    return [str + '---' , depth]
   }
   render (fileTree) {
     fileTree.forEach(({ele, cid, children}) => {
-      this.treeData += this.rennderLine({name: ele, cid})[1]
-      this.renderData += this.rennderLine({name: ele, cid})[0]
+      const [prefix,depth] = this.rennderLine({ele, cid})
+      this.renderData += (prefix + chalk.list(depth,ele)+'\n')
+      this.treeData += (prefix + ele +'\n')
       if (children) {
         this.render(children)
       }
