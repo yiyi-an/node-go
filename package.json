@@ -11,11 +11,13 @@
   "author": "xiaodong.an@zhaopin.com.cn",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.0",
     "command-exists": "^1.2.8",
     "commander": "^3.0.1",
     "eslint-plugin-html": "^6.0.0",
     "inquirer": "^7.0.0",
-    "md5": "^2.2.1"
+    "md5": "^2.2.1",
+    "moment-mini": "^2.24.0"
   },
   "devDependencies": {
     "babel-preset-env": "^1.7.0",
